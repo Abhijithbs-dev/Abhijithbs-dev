@@ -11,10 +11,10 @@
 
   <!-- Social Badges -->
   <p align="center">
-    <a href="www.linkedin.com/in/abhijithbs" target="_blank">
+    <a href="https://linkedin.com/in/abhijithbs" target="_blank">
       <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
     </a>
-    <a href="mailto:YOUR_EMAIL@gmail.com">
+    <a href="mailto:abhijithbs0123@gmail.com">
       <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
     </a>
     <a href="https://github.com/Abhijithbs-dev?tab=repositories&q=&type=public&language=&sort=stargazers">
@@ -24,3 +24,12 @@
 </div>
 
 ---
+
+### 🚀 Executive Summary
+
+```yaml
+Name: Abhijith B S
+Role: Full-Stack & Machine Learning Systems Engineer
+Core Philosophy: Clean Architecture • Automated Pipelines • Data-Driven Intelligence
+Currently Building: End-to-end AI pipelines, Microservices, and Cloud Native Architectures
+Focus Areas: LLM Integration, Distributed Backends, Predictive Modeling, Kubernetes/IaC
