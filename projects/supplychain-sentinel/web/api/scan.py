@@ -12,7 +12,7 @@ from urllib.request import Request, urlopen
 
 MAX_BODY = 64 * 1024
 MAX_PACKAGES = 100
-PIN = re.compile(r"^\\s*([A-Za-z0-9][A-Za-z0-9._-]*)\\s*==\\s*([A-Za-z0-9][A-Za-z0-9._+!-]*)(?:\\s*;.*)?\\s*$")
+PIN = re.compile(r"^\s*([A-Za-z0-9][A-Za-z0-9._-]*)\s*==\s*([A-Za-z0-9][A-Za-z0-9._+!-]*)(?:\s*;.*)?\s*$")
 RANK = {"CRITICAL": 4, "HIGH": 3, "MODERATE": 2, "MEDIUM": 2, "LOW": 1, "UNKNOWN": 0}
 
 
@@ -85,7 +85,7 @@ def build_response(dependencies, skipped, osv_results):
         for vuln in result.get("vulns", []) or []:
             level = get_severity(vuln)
             refs = [item.get("url") for item in vuln.get("references", []) if item.get("url")]
-            details = vuln.get("summary") or (vuln.get("details") or "").split("\\n", 1)[0] or "No summary supplied by the advisory."
+            details = vuln.get("summary") or (vuln.get("details") or "").split("\n", 1)[0] or "No summary supplied by the advisory."
             findings.append({
                 "package": dep["name"], "version": dep["version"], "ecosystem": "PyPI",
                 "id": vuln.get("id", "UNKNOWN-ID"), "aliases": vuln.get("aliases", []) or [],
