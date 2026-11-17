@@ -6,9 +6,36 @@
   <img src="https://img.shields.io/badge/Output-SARIF%20%7C%20CycloneDX-0f766e?style=for-the-badge" alt="SARIF and CycloneDX output">
 </p>
 
-**A lightweight, explainable dependency-risk scanner for Python projects.** It inventories pinned dependencies, checks them against the [OSV vulnerability database](https://osv.dev/), prioritizes findings, and exports machine-readable security artifacts.
+**A lightweight, explainable dependency-risk scanner for Python projects.** SupplyChain Sentinel provides both a command-line scanner and a browser dashboard. It inventories pinned dependencies, checks them against the [OSV vulnerability database](https://osv.dev/), prioritizes findings, and exports machine-readable security artifacts.
 
-> Portfolio project in active development. This initial release is a focused MVP, not a replacement for a full SCA platform or a security audit.
+> Portfolio project in active development. This is a focused MVP, not a replacement for a full SCA platform or a security audit.
+
+## Web dashboard
+
+The web app supports:
+- Paste a Python `requirements.txt` or PEP 621 `pyproject.toml` manifest.
+- Scan exact-pinned direct dependencies against OSV.
+- Review severity-ranked findings and advisory references.
+- Download JSON findings, SARIF 2.1.0, and CycloneDX 1.5 SBOM output.
+
+### Deploy the web app
+
+The web application is in `web/` and is configured for Vercel. Import this repository and set the Vercel **Root Directory** to:
+
+```text
+projects/supplychain-sentinel/web
+```
+
+Vercel serves `index.html` and deploys `api/scan.py` as a Python serverless function. The web API accepts up to 100 unique pinned dependencies per scan and limits request bodies to 64 KB.
+
+For a local static preview:
+
+```bash
+cd web
+python -m http.server 8080
+```
+
+For local end-to-end testing of the serverless API, use the Vercel CLI and run `vercel dev`.
 
 ## Why this problem matters
 
@@ -25,7 +52,7 @@ SupplyChain Sentinel addresses one tractable part of that problem: **known vulne
 - Exports findings as JSON or SARIF 2.1.0 for code-scanning workflows.
 - Reports unpinned or unsupported dependency declarations rather than silently treating them as safe.
 
-## Quick start
+## CLI quick start
 
 Requires Python 3.11+.
 
@@ -51,28 +78,12 @@ python -m sentinel.cli scan /path/to/python-project --format sarif --output resu
 python -m sentinel.cli scan /path/to/python-project --format cyclonedx --output sbom.cdx.json
 ```
 
-The scanner looks for `requirements.txt` and `pyproject.toml` in the supplied directory. You can also pass a single supported file.
-
-## Example output
-
-```text
-SupplyChain Sentinel
-Target: ./sample-app
-Dependencies: 8 pinned | 2 declarations skipped
-Vulnerabilities: 2
-
-CRITICAL  requests  2.19.0  GHSA-xxxx-yyyy-zzzz
-HIGH      urllib3   1.24.1  GHSA-aaaa-bbbb-cccc
-
-Report written to sentinel-report.json
-```
-
-*Illustrative output only; actual findings depend on the target dependency versions and current OSV data.*
+The CLI looks for `requirements.txt` and `pyproject.toml` in the supplied directory. You can also pass a single supported file.
 
 ## Architecture
 
 ```text
-requirements.txt / pyproject.toml
+Manifest (requirements / pyproject)
              |
        Dependency parser
              |
@@ -87,7 +98,7 @@ requirements.txt / pyproject.toml
 
 ## Security and accuracy boundaries
 
-- The initial version checks **pinned direct declarations** only; it does not resolve complete transitive dependency trees.
+- The current MVP checks **pinned direct declarations** only; it does not resolve complete transitive dependency trees.
 - A clean result means no matching known OSV record was returned for the queried package/version. It does **not** prove that software is secure.
 - The scanner sends package names and versions to OSV. Do not scan private dependency names if that disclosure is not permitted by your organization's policy.
 - Network access is required for vulnerability lookups.
@@ -118,7 +129,7 @@ python -m unittest discover -s tests -v
 
 ## Career value
 
-This project demonstrates practical skills in Python engineering, API integration, vulnerability intelligence, software inventory, security reporting, testing, and CI. For interviews, be ready to explain the limitations of version matching, why transitive dependencies matter, how you avoid false confidence, and how you would validate prioritization with a reproducible dataset.
+This project demonstrates practical skills in Python engineering, API integration, vulnerability intelligence, software inventory, security reporting, web application design, testing, and CI. For interviews, be ready to explain the limitations of version matching, why transitive dependencies matter, how you avoid false confidence, and how you would validate prioritization with a reproducible dataset.
 
 ## License
 
