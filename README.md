@@ -1,35 +1,52 @@
-<div align="center">
+# Hi, I'm Abhijith B S 👋
 
-  <!-- Dynamic Typing Header -->
-  <a href="https://github.com/Abhijithbs-dev">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=00F0FF&center=true&vCenter=true&width=650&lines=Hi+%F0%9F%91%8B%2C+I'm+Abhijith;Full-Stack+Developer+%7C+Python+Engineer;AI%2FML+Practitioner+%26+Data+Analyst;Cloud+%26+DevOps+Architect;Building+Scalable%2C+Intelligent+Systems" alt="Typing SVG" />
-  </a>
+Computer Science Engineering student interested in **AI/ML, full-stack development, and practical software engineering**. I build projects that turn ideas into usable applications, from machine-learning systems to interactive web tools.
 
-  <p align="center">
-    <b>Transforming complex algorithms into scalable, production-grade cloud applications.</b>
-  </p>
-
-  <!-- Social Badges -->
-  <p align="center">
-    <a href="https://linkedin.com/in/abhijithbs" target="_blank">
-      <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-    </a>
-    <a href="mailto:abhijithbs0123@gmail.com">
-      <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-    </a>
-    <a href="https://github.com/Abhijithbs-dev?tab=repositories&q=&type=public&language=&sort=stargazers">
-      <img src="https://img.shields.io/badge/Featured_Projects-000000?style=for-the-badge&logo=github&logoColor=white" alt="Projects" />
-    </a>
-  </p>
-</div>
+[![GitHub](https://img.shields.io/badge/GitHub-Abhijithbs--dev-181717?logo=github)](https://github.com/Abhijithbs-dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin)](https://linkedin.com/in/abhijithbs)
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?logo=gmail&logoColor=white)](mailto:abhijithbs0123@gmail.com)
 
 ---
 
-### 🚀 Executive Summary
+## About
 
-```yaml
-Name: Abhijith B S
-Role: Full-Stack & Machine Learning Systems Engineer
-Core Philosophy: Clean Architecture • Automated Pipelines • Data-Driven Intelligence
-Currently Building: End-to-end AI pipelines, Microservices, and Cloud Native Architectures
-Focus Areas: LLM Integration, Distributed Backends, Predictive Modeling, Kubernetes/IaC
+- 🎓 Computer Science Engineering student
+- 🧠 Exploring machine learning, retrieval-augmented generation (RAG), and AI-assisted applications
+- 🌐 Building web applications with Python and modern JavaScript tooling
+- 🛰️ Interested in data-driven visualization, automation, and open-source software
+- 📌 Focused on writing clearer documentation and building maintainable projects
+
+## Featured projects
+
+| Project | What it does | Technologies |
+|---|---|---|
+| [SeleneSight](https://github.com/Abhijithbs-dev/NASA_Space_Apps_Challenge_2026) | Interactive lunar south-pole evaluator for illumination, solar power, and Earth communications | JavaScript, HTML, CSS, NASA/JPL data concepts |
+| [CyberShield](https://github.com/Abhijithbs-dev/CyberShield-Cyberbullying-Detection-Comparative-ML-Analysis) | Compares classical ML pipelines and provides cyberbullying text prediction | Python, FastAPI, React, scikit-learn |
+| [PDF Question Answering with RAG](https://github.com/Abhijithbs-dev/AI-Powered-PDF-Question-Answering-System-using-RAG-with-Gemini-Pro-and-HuggingFace-Embeddings) | Ask questions about uploaded PDF documents using retrieval-augmented generation | Streamlit, Gemini, Hugging Face, FAISS |
+| [CarbonDash](https://github.com/Abhijithbs-dev/carbon-dashboard) | Interactive carbon-footprint dashboard with scenario simulation and visualizations | React, Vite, JavaScript |
+| [SkillOpt](https://github.com/Abhijithbs-dev/SkillOpt) | Skills-focused software project with documentation, configuration, and tests | Python |
+
+## Technical interests
+
+**Languages & development:** Python, JavaScript, HTML, CSS  
+**AI & data:** Machine learning, NLP, embeddings, RAG, data visualization  
+**Frameworks & tools used in projects:** FastAPI, React, Streamlit, scikit-learn, FAISS, Vite, Git
+
+*This list reflects technologies visible in my repositories; it is not intended as a claim of professional-level proficiency in every tool.*
+
+## What I'm working toward
+
+- Building end-to-end projects with clear architecture and reproducible setup
+- Improving testing, code quality, and secure configuration practices
+- Writing useful READMEs, setup guides, and project documentation
+- Contributing to open-source projects
+
+## Find me
+
+- GitHub: [@Abhijithbs-dev](https://github.com/Abhijithbs-dev)
+- LinkedIn: [abhijithbs](https://linkedin.com/in/abhijithbs)
+- Email: [abhijithbs0123@gmail.com](mailto:abhijithbs0123@gmail.com)
+
+---
+
+<sub>Thanks for visiting. Feel free to explore the repositories and share feedback!</sub>
