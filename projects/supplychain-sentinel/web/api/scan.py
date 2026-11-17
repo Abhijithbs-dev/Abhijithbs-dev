@@ -5,14 +5,14 @@ from __future__ import annotations
 import json
 import re
 import tomllib
+from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
-from datetime import datetime, timezone
 
 MAX_BODY = 64 * 1024
 MAX_PACKAGES = 100
-PIN = re.compile(r"^\s*([A-Za-z0-9][A-Za-z0-9._-]*)\s*==\s*([A-Za-z0-9][A-Za-z0-9._+!-]*)")
+PIN = re.compile(r"^\\s*([A-Za-z0-9][A-Za-z0-9._-]*)\\s*==\\s*([A-Za-z0-9][A-Za-z0-9._+!-]*)(?:\\s*;.*)?\\s*$")
 RANK = {"CRITICAL": 4, "HIGH": 3, "MODERATE": 2, "MEDIUM": 2, "LOW": 1, "UNKNOWN": 0}
 
 
@@ -60,7 +60,7 @@ def parse_manifest(raw: str, manifest_format: str):
 
 def osv_lookup(dependencies):
     payload = {"queries": [{"package": {"name": d["name"], "ecosystem": "PyPI"}, "version": d["version"]} for d in dependencies]}
-    request = Request("https://api.osv.dev/v1/querybatch", data=json.dumps(payload).encode(), headers={"Content-Type": "application/json", "Accept": "application/json", "User-Agent": "SupplyChain-Sentinel/0.1"}, method="POST")
+    request = Request("https://api.osv.dev/v1/querybatch", data=json.dumps(payload).encode(), headers={"Content-Type": "application/json", "Accept": "application/json", "User-Agent": "SupplyChain-Sentinel/0.2"}, method="POST")
     try:
         with urlopen(request, timeout=25) as response:
             result = json.loads(response.read().decode())
@@ -85,7 +85,7 @@ def build_response(dependencies, skipped, osv_results):
         for vuln in result.get("vulns", []) or []:
             level = get_severity(vuln)
             refs = [item.get("url") for item in vuln.get("references", []) if item.get("url")]
-            details = vuln.get("summary") or (vuln.get("details") or "").split("\n", 1)[0] or "No summary supplied by the advisory."
+            details = vuln.get("summary") or (vuln.get("details") or "").split("\\n", 1)[0] or "No summary supplied by the advisory."
             findings.append({
                 "package": dep["name"], "version": dep["version"], "ecosystem": "PyPI",
                 "id": vuln.get("id", "UNKNOWN-ID"), "aliases": vuln.get("aliases", []) or [],
