@@ -41,7 +41,7 @@
           <label class="field-label" for="manifest">Paste your dependency manifest</label>
           <textarea id="manifest" class="editor" spellcheck="false" placeholder="requests==2.31.0&#10;urllib3==1.26.5&#10;flask==2.2.2"></textarea>
           <p class="hint">Only package names and versions are sent to OSV for matching. Keep private package names out of scans unless your policy permits disclosure. Exact version pins (==) are required for reliable matching.</p>
-          <div class="actions"><button id="scan" class="btn primary">◈ Run vulnerability scan</button><button id="sample" class="btn secondary">Load sample</button><button id="clear" class="btn secondary">Clear</button></div>
+          <div class="actions"><button id="scan" class="btn primary">◈ Run vulnerability scan</button><button id="sample" class="btn secondary">Load sample</button><button id="upload" class="btn secondary">Upload manifest</button><input id="file" type="file" accept=".txt,.toml" hidden><button id="clear" class="btn secondary">Clear</button></div>
           <div id="status" class="status" role="status" aria-live="polite"></div>
         </div>
       </article>
@@ -89,6 +89,8 @@
     $("manifest").placeholder = mode === "requirements" ? "requests==2.31.0\nurllib3==1.26.5" : '[project]\ndependencies = [\n  "requests==2.31.0",\n  "urllib3==1.26.5"\n]';
   }));
   $("sample").onclick = () => { mode = "requirements"; document.querySelector('[data-mode="requirements"]').click(); $("manifest").value = sample; };
+  $("upload").onclick = () => $("file").click();
+  $("file").onchange = async event => { const file = event.target.files[0]; if (!file) return; $("manifest").value = await file.text(); const toml = file.name.toLowerCase().endsWith(".toml"); document.querySelector(toml ? '[data-mode="pyproject"]' : '[data-mode="requirements"]').click(); setStatus("Loaded " + file.name + ". Review the content, then scan.", "ok"); event.target.value = ""; };
   $("clear").onclick = () => { $("manifest").value = ""; $("status").textContent = ""; $("results").classList.remove("show"); last = null; };
   const setStatus = (message, kind="") => { $("status").textContent = message; $("status").className = "status " + kind; };
   const download = (filename, content, type) => { const a=document.createElement("a"), url=URL.createObjectURL(new Blob([content],{type})); a.href=url; a.download=filename; a.click(); URL.revokeObjectURL(url); };
@@ -104,7 +106,7 @@
   $("download-sbom").onclick = () => {
     if (!last) return;
     const components = last.dependencies.map(d => ({type:"library", "bom-ref":"pkg:pypi/"+d.name+"@"+d.version,name:d.name,version:d.version,purl:"pkg:pypi/"+d.name+"@"+d.version,scope:"required"}));
-    download("sentinel-sbom.cdx.json",JSON.stringify({bomFormat:"CycloneDX",specVersion:"1.5",version:1,components},null,2),"application/json");
+    download("sentinel-sbom.cdx.json",JSON.stringify({bomFormat:"CycloneDX",specVersion:"1.5",serialNumber:"urn:uuid:"+crypto.randomUUID(),version:1,metadata:{timestamp:new Date().toISOString(),tools:[{vendor:"SupplyChain Sentinel",name:"web-scanner",version:"0.2.0"}]},components},null,2),"application/json");
   };
   function render(data) {
     const counts = data.summary.severity_counts;
